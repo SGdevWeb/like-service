@@ -1,5 +1,9 @@
 # like-service
-
+installer postgresql 
+executer PgAdmin4 
+creé la base de donnée
+ouvrir un query tool
+exectuter la ligne: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
 
 
 ## Getting started

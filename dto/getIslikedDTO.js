@@ -5,7 +5,7 @@ const schemaValidator = require('../middleware/shemaValidator');
 function getIsLikedDTO(req, res, next){
     const getIsLikedDTOSchema = Joi.object({
         user : Joi.object().required(),
-        uuid_project : Joi.string().required().allow(''),
+        uuid_project : Joi.string().required(),
     });
     schemaValidator(req, getIsLikedDTOSchema, next);
 }

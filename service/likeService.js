@@ -3,11 +3,10 @@ const Like = require('../model/likeModel')
 
 const postLike = async (data) => {
     const {user, uuid_project} = data;
-    const like = new Like(null,user.userId, uuid_project);
-
-    const querySelect = `SELECT * FROM likes WHERE user_uuid ='${user.userId}' AND project_uuid ='${like.getProjectUUID()}' `;
+    const like = new Like(null,user.user.uuid, uuid_project);
+    const querySelect = `SELECT * FROM likes WHERE user_uuid ='${like.getUserUUID()}' AND project_uuid ='${like.getProjectUUID()}' `;
     const queryInsert = `INSERT INTO likes (user_uuid, project_uuid, like_date) VALUES ($1, $2, $3) RETURNING like_uuid`;
-    const queryDelete = `DELETE FROM likes WHERE user_uuid ='${user.userId}' AND project_uuid ='${like.getProjectUUID()}' `
+    const queryDelete = `DELETE FROM likes WHERE user_uuid ='${like.getUserUUID()}' AND project_uuid ='${like.getProjectUUID()}' `
     
     const selectResult = await pool.query(querySelect).catch((err) => {
         console.log(err)
@@ -29,8 +28,8 @@ const postLike = async (data) => {
 
 const getProjectLikeByUser = async (data) => {
     const {user, uuid_project} = data;
-    const like = new Like(null,user.user, uuid_project);
-    const querySelect = `SELECT * FROM likes WHERE user_uuid ='${user.user}' AND project_uuid ='${like.getProjectUUID()}' `;
+    const like = new Like(null,user.uuid, uuid_project);
+    const querySelect = `SELECT * FROM likes WHERE user_uuid ='${like.getUserUUID()}' AND project_uuid ='${like.getProjectUUID()}' `;
     const selectResult = await pool.query(querySelect).catch((err) => {console.log(err)});
     return {like : selectResult.rows.length !== 0};
 }

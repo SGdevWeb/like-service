@@ -5,6 +5,17 @@ creé la base de donnée
 ouvrir un query tool
 exectuter la ligne: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
 
+.env
+SERVER_PORT= 8030
+
+PROJECT_SERVICE_ADDRESS="localhost:8020"
+
+DB_HOST=''
+DB_USER=''
+DB_NAME=''
+DB_PASSWORD=''
+DB_PORT=''
+
 
 ## Getting started
 
